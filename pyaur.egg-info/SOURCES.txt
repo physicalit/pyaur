@@ -1,0 +1,7 @@
+pyaur.py
+pyaur.egg-info/PKG-INFO
+pyaur.egg-info/SOURCES.txt
+pyaur.egg-info/dependency_links.txt
+pyaur.egg-info/entry_points.txt
+pyaur.egg-info/requires.txt
+pyaur.egg-info/top_level.txt

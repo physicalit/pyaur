@@ -1,0 +1,20 @@
+#!/usr/bin/env python2
+
+from setuptools import setup
+
+setup(
+      name='pyaur',
+      version='0.01',
+      description='Installing and upgrading AUR packages on Arch Linux',
+      author='Mihuleac Sergiu',
+      py_modules=['pyaur'],
+      author_email='',
+      url='',
+      install_requires=[
+            'Click',
+            ],
+      entry_points="""
+            [console_scripts]
+            pyaur=pyaur:cli
+      """,
+     )

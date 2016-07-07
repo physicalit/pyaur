@@ -15,3 +15,7 @@ Download or clone the repo, unzip it if necessary, then cd in to the folder and 
 ### Usage:
 
 `pyaur --help` To list usage information. 
+
+---
+
+Original repo at [https://bitbucket.org/physicalit/pyaur/src](https://bitbucket.org/physicalit/pyaur/src)

@@ -1,5 +1,5 @@
 # pyaur
-Small script for install packages from AUR, only for Arch Linux users. 
+Small script for installing packages from AUR, only for Arch Linux users. 
 
 ### Requerments:
 

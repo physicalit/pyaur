@@ -2,7 +2,6 @@
 
 import os
 import click
-
 from subprocess import call
 
 @click.group()

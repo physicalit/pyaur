@@ -4,3 +4,4 @@ build
 dist
 pyaur.egg-info
 __pycache__
+.gitignore

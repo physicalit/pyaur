@@ -1,8 +1,9 @@
 #!/usr/bin/env python2
 
 import os
+import re
 import click
-from subprocess import call
+import subprocess
 
 
 @click.group()
@@ -15,30 +16,25 @@ def cli():
 @click.argument('list', required=False)
 def list(list):
     """ List installed AUR packages. """
-    list = call(['pacman', '-Qm'])
+    list = subprocess.run(['pacman', '-Qm'])
 
 
 @cli.command()
 @click.argument('clone', required=False)
 def clone(clone):
     """ Clone AUR repositories package name. """
-    clone = call(['git', 'clone',
+    clone = subprocess.run(['git', 'clone',
                   "https://aur.archlinux.org/{0}.git".format(clone)])
 
 
 @cli.command()
-@click.argument('install', required=False)
+@click.argument('install', required=False, nargs=-1)
 def install(install):
     """ Install or upgrade an AUR package. """
-    call(['git', 'clone', "https://aur.archlinux.org/{0}.git".format(install)])
-    # call(['git', 'clone', "https://aur.archlinux.org/{1}.git".format(install)])
-    # call(['git', 'clone', "https://aur.archlinux.org/{2}.git".format(install)])
-    # call(['git', 'clone', "https://aur.archlinux.org/{3}.git".format(install)])
-    os.chdir("./{0}".format(install))
-    call(['makepkg', '-sri'])
-    # os.chdir("./{1}".format(install))
-    # call(['makepkg', '-sri'])
-    # os.chdir("./{2}".format(install))
-    # call(['makepkg', '-sri'])
-    # os.chdir("./{3}".format(install))
-    # call(['makepkg', '-sri'])
+    for ins in install:
+        package = "https://aur.archlinux.org/"+ins+".git"
+        pathpk = "/tmp/"+ins
+        instcheck = subprocess.run(['git', 'clone', str(package), pathpk])
+        print(instcheck)
+        os.chdir(str(pathpk))
+        subprocess.run(['makepkg', '-sri'])

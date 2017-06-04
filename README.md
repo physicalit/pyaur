@@ -10,9 +10,9 @@ Small script for installing packages from AUR, only for Arch Linux users.
 
 Download or clone the repo, unzip it if necessary, then cd in to the folder and run the following command:
 
-`. venv/bin/activate`
-`./setup.py`
-`sudo ln -s $(pwd)/venv/bin/pyaur /usr/bin/`
+    . venv/bin/activate
+    ./setup.py
+    sudo ln -s $(pwd)/venv/bin/pyaur /usr/bin/
 
 ### Usage:
 
@@ -24,6 +24,8 @@ Original repo at [https://bitbucket.org/physicalit/pyaur/src](https://bitbucket.
 
 ### To Do
 
- * Install multiple packages, one after the other.
- * Search for aur packages
+ * Install multiple packages, one after the other. - **DONE**
+ * Search for aur packages - for the momen
+    * https://aur.archlinux.org/rpc.php
+    * https://aur.archlinux.org//rpc/?v=5&type=search&arg=foobar
  * Uninstall package

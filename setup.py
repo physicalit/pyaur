@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
       name='pyaur',
-      version='0.01',
+      version='0.02',
       description='Installing and upgrading AUR packages on Arch Linux',
       author='Mihuleac Sergiu',
       py_modules=['pyaur'],

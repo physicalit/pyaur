@@ -4,6 +4,7 @@ import os
 import click
 from subprocess import call
 
+
 @click.group()
 @click.version_option()
 def cli():
@@ -16,16 +17,28 @@ def list(list):
     """ List installed AUR packages. """
     list = call(['pacman', '-Qm'])
 
+
 @cli.command()
 @click.argument('clone', required=False)
 def clone(clone):
     """ Clone AUR repositories package name. """
-    clone = call(['git', 'clone', "https://aur.archlinux.org/{0}.git".format(clone)])
+    clone = call(['git', 'clone',
+                  "https://aur.archlinux.org/{0}.git".format(clone)])
+
 
 @cli.command()
 @click.argument('install', required=False)
 def install(install):
     """ Install or upgrade an AUR package. """
     call(['git', 'clone', "https://aur.archlinux.org/{0}.git".format(install)])
+    # call(['git', 'clone', "https://aur.archlinux.org/{1}.git".format(install)])
+    # call(['git', 'clone', "https://aur.archlinux.org/{2}.git".format(install)])
+    # call(['git', 'clone', "https://aur.archlinux.org/{3}.git".format(install)])
     os.chdir("./{0}".format(install))
     call(['makepkg', '-sri'])
+    # os.chdir("./{1}".format(install))
+    # call(['makepkg', '-sri'])
+    # os.chdir("./{2}".format(install))
+    # call(['makepkg', '-sri'])
+    # os.chdir("./{3}".format(install))
+    # call(['makepkg', '-sri'])

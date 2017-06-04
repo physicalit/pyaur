@@ -1,0 +1,6 @@
+.git
+test.py
+build
+dist
+pyaur.egg-info
+__pycache__

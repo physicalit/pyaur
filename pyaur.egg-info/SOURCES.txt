@@ -1,4 +1,5 @@
 pyaur.py
+setup.py
 pyaur.egg-info/PKG-INFO
 pyaur.egg-info/SOURCES.txt
 pyaur.egg-info/dependency_links.txt

@@ -1,9 +1,11 @@
 #!/usr/bin/env python2
 
 import os
-import re
 import click
 import subprocess
+import urllib.request
+import json
+import jsonpath
 
 
 @click.group()
@@ -24,7 +26,7 @@ def list(list):
 def clone(clone):
     """ Clone AUR repositories package name. """
     clone = subprocess.run(['git', 'clone',
-                  "https://aur.archlinux.org/{0}.git".format(clone)])
+                            "https://aur.archlinux.org/{0}.git".format(clone)])
 
 
 @cli.command()
@@ -34,7 +36,20 @@ def install(install):
     for ins in install:
         package = "https://aur.archlinux.org/"+ins+".git"
         pathpk = "/tmp/"+ins
-        instcheck = subprocess.run(['git', 'clone', str(package), pathpk])
-        print(instcheck)
+        subprocess.run(['git', 'clone', str(package), pathpk])
         os.chdir(str(pathpk))
         subprocess.run(['makepkg', '-sri'])
+
+
+@cli.command()
+@click.argument('search', required=False, nargs=-1)
+def search(search):
+    """ Search AUR repositorie for package name. """
+    for srch in search:
+        packs = urllib.request.urlopen("https://aur.archlinux.org//rpc/?v=5&type=search&arg="+srch).read()
+        somejson = json.loads(packs)
+        match = jsonpath.jsonpath(somejson, '$.results[*].Name,Version,Description')
+        print(match)
+
+        # my_json = packs.decode('utf8').replace("'", '"')
+        # result = jsonpath("{'id': 'ds'}", '$.results[*].Name,Version,Description')

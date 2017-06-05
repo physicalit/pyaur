@@ -1,10 +1,10 @@
-#!venv/bin/python3
+#!/usr/bin/python
 
 from setuptools import setup
 
 setup(
       name='pyaur',
-      version='0.03',
+      version='0.04',
       description='Installing and upgrading AUR packages on Arch Linux',
       author='Mihuleac Sergiu',
       py_modules=['pyaur'],

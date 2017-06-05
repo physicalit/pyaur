@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/python
 
 import os
 import click
@@ -46,7 +46,6 @@ def search(search):
     """ Search AUR repositorie for package name. """
     for srch in search:
         packs = urllib.request.urlopen("https://aur.archlinux.org//rpc/?v=5&type=search&arg="+srch).read()
-        print(type(packs))
         somejson = json.loads(packs)
         somej = somejson['results']
         print(type(somej))

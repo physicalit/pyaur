@@ -26,7 +26,7 @@ Original repo at [https://bitbucket.org/physicalit/pyaur/src](https://bitbucket.
 ### To Do
 
  * Install multiple packages, one after the other. - **DONE**
- * Search for aur packages - in progress
+ * Search for aur packages - **DONE**
     * https://aur.archlinux.org/rpc.php
     * https://aur.archlinux.org//rpc/?v=5&type=search&arg=foobar
  * Uninstall package

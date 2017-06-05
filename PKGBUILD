@@ -1,7 +1,7 @@
 # Maintainer: Mihuleac Sergiu
 
 pkgname=pyaur
-pkgver=0.03
+pkgver=0.04
 pkgdesc='Installing and upgrading AUR packages on Arch Linux'
 arch=('any')
 url='https://github.com/physicalit/pyaur'

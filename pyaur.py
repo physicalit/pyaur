@@ -5,7 +5,6 @@ import click
 import subprocess
 import urllib.request
 import json
-import jsonpath
 
 
 @click.group()
@@ -47,9 +46,12 @@ def search(search):
     """ Search AUR repositorie for package name. """
     for srch in search:
         packs = urllib.request.urlopen("https://aur.archlinux.org//rpc/?v=5&type=search&arg="+srch).read()
+        print(type(packs))
         somejson = json.loads(packs)
-        match = jsonpath.jsonpath(somejson, '$.results[*].Name,Version,Description')
-        print(match)
-
-        # my_json = packs.decode('utf8').replace("'", '"')
-        # result = jsonpath("{'id': 'ds'}", '$.results[*].Name,Version,Description')
+        somej = somejson['results']
+        print(type(somej))
+        for pkg in somej:
+            print("Name: "+pkg['Name'])
+            print("Version: "+pkg['Version'])
+            print("Desc: "+pkg['Description'])
+            print("################")

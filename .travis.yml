@@ -1,0 +1,9 @@
+language: python
+python:
+    - "3.6"
+install:
+    - "python setup.py install"
+    - "pip install Click"
+    - "pip install jsonpath"
+script:
+    - "python venv/bin/pyaur search foobar"

@@ -12,7 +12,6 @@ setup(
       url='',
       install_requires=[
             'Click',
-            'jsonpath',
             ],
       entry_points="""
             [console_scripts]

@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!venv/bin/python3
 
 from setuptools import setup
 

@@ -5,4 +5,4 @@ install:
     - "python setup.py install"
     - "pip install Click"
 script:
-    - "python build/lib/pyaur.py search foobar"
+    - "pyaur search foobar"

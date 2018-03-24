@@ -3,9 +3,8 @@ Small script for installing packages from AUR, only for Arch Linux users.
 
 ### Requerments:
 
-  - python 3
+  - python 3.6 or latest
   - git
-  - virtualenv
 
 ### Instalation:
 

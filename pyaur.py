@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import os
 import click
@@ -18,6 +18,7 @@ def cli():
 def list(list):
     """ List installed AUR packages. """
     list = subprocess.run(['pacman', '-Qm'])
+    print(list)
 
 
 @cli.command()
@@ -33,8 +34,8 @@ def clone(clone):
 def install(install):
     """ Install or upgrade an AUR package. """
     for ins in install:
-        package = "https://aur.archlinux.org/"+ins+".git"
-        pathpk = "/tmp/"+ins
+        package = "https://aur.archlinux.org/" + ins + ".git"
+        pathpk = "/tmp/" + ins
         subprocess.run(['git', 'clone', str(package), pathpk])
         os.chdir(str(pathpk))
         subprocess.run(['makepkg', '-sri'])
@@ -45,12 +46,13 @@ def install(install):
 def search(search):
     """ Search AUR repositorie for package name. """
     for srch in search:
-        packs = urllib.request.urlopen("https://aur.archlinux.org//rpc/?v=5&type=search&arg="+srch).read()
+        packs = urllib.request.urlopen(
+            "https://aur.archlinux.org//rpc/?v=5&type=search&arg=" + srch).read()
         somejson = json.loads(packs)
         somej = somejson['results']
         print(type(somej))
         for pkg in somej:
-            print("Name: "+pkg['Name'])
-            print("Version: "+pkg['Version'])
-            print("Desc: "+pkg['Description'])
+            print("Name: " + pkg['Name'])
+            print("Version: " + pkg['Version'])
+            print("Desc: " + pkg['Description'])
             print("################")

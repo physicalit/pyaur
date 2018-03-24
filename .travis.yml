@@ -4,6 +4,5 @@ python:
 install:
     - "python setup.py install"
     - "pip install Click"
-    - "pip install jsonpath"
 script:
     - "python venv/bin/pyaur search foobar"

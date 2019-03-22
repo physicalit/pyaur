@@ -1,4 +1,4 @@
-# pyaur [![Build Status](https://travis-ci.org/physicalit/pyaur.svg?branch=master)](https://travis-ci.org/physicalit/pyaur)
+# pyaur [![Build Status](https://travis-ci.org/physicalit/pyaur.svg?branch=master)](https://travis-ci.org/physicalit/pyaur) [![Requirements Status](https://requires.io/github/physicalit/pyaur/requirements.svg?branch=master)](https://requires.io/github/physicalit/pyaur/requirements/?branch=master)
 Small script for installing packages from AUR, only for Arch Linux users.
 
 ### Requerments:

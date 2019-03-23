@@ -47,7 +47,7 @@ def clone(clone):
 def remove(remove):
     """ Remove packages """
     for pkg in remove:
-        subprocess.run(['pacman', 'Rsn', pkg])
+        subprocess.run(['pacman', '-Rsn', pkg])
 
 @cli.command()
 @click.argument('install', required=False, nargs=-1)
@@ -60,16 +60,16 @@ def install(install, o, yes):
     for ins in install:
         if o:
             if yes:
-                subprocess.run(['pacman', '-Syu' '--needed', ins])
+                subprocess.run(['pacman', '-Syu', '--needed', ins])
             else:
-                subprocess.run(['pacman', '-Syu' '--needed', '--noconfirm', ins])
+                subprocess.run(['pacman', '-Syu', '--needed', '--noconfirm', ins])
         else:
             package = "https://aur.archlinux.org/{0}.git".format(ins)
             pathpk = "/var/tmp/{0}".format(ins)
             subprocess.run(['git', 'clone', str(package), pathpk])
             os.chdir(str(pathpk))
             if yes:
-                subprocess.run(['makepkg', '-sri --needed'])
+                subprocess.run(['makepkg', '-sri', '--needed'])
             else:
                 subprocess.run(['makepkg', '-sri', '--needed', '--noconfirm'])
 

@@ -1,10 +1,17 @@
 #!/usr/bin/python3
 
-import os
+from os import chdir, system
+from tempfile import TemporaryDirectory, NamedTemporaryFile
 import click
-import subprocess
 import urllib.request
 import json
+
+def exec_command(com):
+    with NamedTemporaryFile(mode='r') as file:
+        path = file.name
+        system("{0} >> {1}".format(com, path))
+        result = file.readlines()
+    return [l.rstrip('\n') for l in result]
 
 def search_print(result, o):
     for pkg in result:
@@ -30,16 +37,16 @@ def cli():
 def list(list, o):
     """ List installed AUR or official repo packages. """
     if o:
-        print(subprocess.run(['pacman', '-Qn']))
+        print(exec_command('/usr/bin/pacman -Qn'))
     else:
-        print(subprocess.run(['pacman', '-Qm']))
+        print(exec_command('/usr/bin/pacman -Qm'))
 
 
 @cli.command()
 @click.argument('clone', required=False)
 def clone(clone):
     """ Clone AUR repositories package name. """
-    subprocess.run(['git', 'clone',
+    exec_command(['git', 'clone',
                     "https://aur.archlinux.org/{0}.git".format(clone)])
 
 @cli.command()
@@ -47,7 +54,7 @@ def clone(clone):
 def remove(remove):
     """ Remove packages """
     for pkg in remove:
-        subprocess.run(['pacman', '-Rsn', pkg])
+        exec_command(['/usr/bin/pacman', '-Rsn', pkg])
 
 @cli.command()
 @click.argument('install', required=False, nargs=-1)
@@ -60,18 +67,18 @@ def install(install, o, yes):
     for ins in install:
         if o:
             if yes:
-                subprocess.run(['pacman', '-Syu', '--needed', ins])
+                exec_command(['/usr/bin/pacman', '-Syu', '--needed', ins])
             else:
-                subprocess.run(['pacman', '-Syu', '--needed', '--noconfirm', ins])
+                exec_command(['/usr/bin/pacman', '-Syu', '--needed', '--noconfirm', ins])
         else:
             package = "https://aur.archlinux.org/{0}.git".format(ins)
             pathpk = "/var/tmp/{0}".format(ins)
-            subprocess.run(['git', 'clone', str(package), pathpk])
-            os.chdir(str(pathpk))
+            exec_command(['/usr/bin/git', 'clone', str(package), pathpk])
+            chdir(str(pathpk))
             if yes:
-                subprocess.run(['makepkg', '-sri', '--needed'])
+                exec_command(['/usr/bin/makepkg', '-sri', '--needed'])
             else:
-                subprocess.run(['makepkg', '-sri', '--needed', '--noconfirm'])
+                exec_command(['/usr/bin/makepkg', '-sri', '--needed', '--noconfirm'])
 
 
 @cli.command()

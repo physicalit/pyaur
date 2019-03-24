@@ -5,3 +5,6 @@ dist
 pyaur.egg-info
 __pycache__
 .gitignore
+*.orig
+*.spec
+.vscode
